@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chinmay Pathak — Software Developer</title>
+    <style>
+        :root {
+    --bg: #f5f5f5; /* Option 1: Earthy */
+    --text: #444;
+    --accent: #457b9d;
+    --subtle: #666;
+    --font-heading: 'M PLUS Rounded 1c', sans-serif;
+    --font-body: 'Noto Serif JP', serif;
+}
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: bold;
+            color: var(--text);
+        }
+
+        nav {
+            display: flex;
+            gap: 1.25rem;
+            font-size: 0.95rem;
+            padding-right: 2rem;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 3.5rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .profile {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            overflow: hidden;
+        }
+
+        .profile img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .intro h1 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 0.35rem;
+        }
+
+        .intro p {
+            margin-bottom: 1rem;
+            color: var(--subtle);
+        }
+
+        /* Socials */
+        .socials {
+            display: flex;
+            gap: 1rem;
+            justify-content: center; /* Center the icons */
+        }
+
+        .socials svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            opacity: 0.6;
+            transition: opacity 0.15s, color 0.15s;
+        }
+
+        .socials a:hover svg {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 1.65rem;
+            margin-bottom: 0.85rem;
+            color: var(--text);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .projects ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .projects li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.2em;
+        }
+
+        .projects li::before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.8em;
+            top: 0.2em;
+        }
+
+        .projects strong {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Resume */
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.4rem;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 6px;
+            font-family: var(--font-heading);
+            transition: background 0.15s;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #d33a2a;
+        }
+
+        .resume-embed object {
+            width: 100%;
+            height: 550px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Contact */
+        #contact .socials {
+            margin-top: 1rem;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Chinmay Pathak</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="profile">
+            <img src="profile.jpg" alt="Chinmay Pathak" />
+        </div>
+        <div class="intro">
+            <h1>Hey, I’m Chinmay Pathak.</h1>
+            <p>Software Developer at Oracle specializing in Java, Spring Boot & Cloud.</p>
+            <div class="socials">
+                <a href="https://www.linkedin.com/in/chinmay-pathak-71b33518b/" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 448 512">
+                        <path
+                            d="M100.28 448H7.4V148.9h92.88zm-46.14-338C24.22 110 0 85.8 0 56.26 0 26.71 24.22 2.06 54.14 2.06s54.14 24.65 54.14 54.2C108.28 85.8 84.06 110 54.14 110zM447.9 448h-92.68V302.4c0-34.7-12.4-58.4-43.41-58.4-23.69 0-37.77 15.93-43.97 31.37-2.26 5.5-2.83 13.17-2.83 20.88V448h-92.81s1.24-235.26 0-259.33h92.81v36.75c0 .3-.44.6-.63.9h.63v-.9C291.86 189.05 334.2 160 383.69 160c61.17 0 106.99 39.93 106.99 125.59V448z" />
+                    </svg>
+                </a>
+                <a href="mailto:chinmay.pathak@gmail.com">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v.01L12 13 0 4.01V4zm0 2.236L12 15l12-8.764V20a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6.236z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects & Achievements</h2>
+        <ul>
+            <li>Reduced CI build time by <strong>30%</strong>.</li>
+            <li>Built a multi‑tenant test dashboard.</li>
+            <li>Automated Kindle MOBI transfer (saved 10+ hrs/month).</li>
+        </ul>
+    </section>
+
+    <section id="resume" class="resume-embed">
+        <h2>Resume</h2>
+        <a href="resume.pdf" class="btn">Download PDF</a>
+        <object data="resume.pdf" type="application/pdf">
+            <p>Download the <a href="resume.pdf">PDF</a>.</p>
+        </object>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="socials">
+            <a href="https://www.linkedin.com/in/chinmay-pathak-71b33518b/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 448 512">
+                    <path
+                        d="M100.28 448H7.4V148.9h92.88zm-46.14-338C24.22 110 0 85.8 0 56.26 0 26.71 24.22 2.06 54.14 2.06s54.14 24.65 54.14 54.2C108.28 85.8 84.06 110 54.14 110zM447.9 448h-92.68V302.4c0-34.7-12.4-58.4-43.41-58.4-23.69 0-37.77 15.93-43.97 31.37-2.26 5.5-2.83 13.17-2.83 20.88V448h-92.81s1.24-235.26 0-259.33h92.81v36.75c0 .3-.44.6-.63.9h.63v-.9C291.86 189.05 334.2 160 383.69 160c61.17 0 106.99 39.93 106.99 125.59V448z" />
+                </svg>
+            </a>
+            <a href="mailto:chinmay.pathak@gmail.com">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M0 4a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v.01L12 13 0 4.01V4zm0 2.236L12 15l12-8.764V20a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6.236z" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+</body>
+
+</html>
