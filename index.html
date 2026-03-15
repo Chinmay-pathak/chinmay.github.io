@@ -447,12 +447,15 @@
 
     /* ── INK WASH CANVAS ── */
     #ink-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100%; height: 100%;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.55;
+      opacity: 0.7;
+    }
+    body {
+      position: relative;
     }
     body > * { position: relative; z-index: 1; }
 
@@ -704,7 +707,7 @@
       <div class="contact-grid">
         <a class="contact-card" href="/cdn-cgi/l/email-protection#23404b4a4d4e425a0d5342574b424863444e424a4f0d404c4e">
           <span class="contact-label">Email</span>
-          <span class="contact-value">chinmay.pathak<br>@gmail.com</span>
+          <span class="contact-value">chinmay.pathak@gmail.com</span>
           <span class="contact-sub">Best way to reach me</span>
         </a>
         <a class="contact-card" href="https://www.linkedin.com/in/pathak-chinmay/" target="_blank" rel="noopener">
@@ -727,30 +730,30 @@
     // ── INK WASH BACKGROUND ──
     const canvas = document.getElementById('ink-canvas');
     const ctx = canvas.getContext('2d');
-    let W, H, blobs;
+    let W, H, blobs, animFrame;
 
     function resize() {
       W = canvas.width  = window.innerWidth;
-      H = canvas.height = document.body.scrollHeight;
+      H = canvas.height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, window.innerHeight);
+      canvas.style.height = H + 'px';
     }
 
     function makeBlob() {
       return {
         x: Math.random() * W,
         y: Math.random() * H,
-        r: 180 + Math.random() * 260,
-        vx: (Math.random() - 0.5) * 0.18,
-        vy: (Math.random() - 0.5) * 0.12,
-        // matcha palette with low opacity
+        r: 200 + Math.random() * 300,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: (Math.random() - 0.5) * 0.14,
         hue: 85 + Math.random() * 30,
-        sat: 20 + Math.random() * 25,
-        lit: 50 + Math.random() * 20,
-        alpha: 0.018 + Math.random() * 0.022,
+        sat: 22 + Math.random() * 25,
+        lit: 48 + Math.random() * 18,
+        alpha: 0.025 + Math.random() * 0.028,
       };
     }
 
     function initBlobs() {
-      blobs = Array.from({ length: 7 }, makeBlob);
+      blobs = Array.from({ length: 8 }, makeBlob);
     }
 
     function drawBlobs() {
@@ -759,27 +762,36 @@
         const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
         const col = `hsla(${b.hue},${b.sat}%,${b.lit}%,`;
         g.addColorStop(0,   col + b.alpha + ')');
-        g.addColorStop(0.5, col + b.alpha * 0.5 + ')');
+        g.addColorStop(0.5, col + (b.alpha * 0.5) + ')');
         g.addColorStop(1,   col + '0)');
         ctx.fillStyle = g;
         ctx.beginPath();
         ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
         ctx.fill();
-        // drift
         b.x += b.vx; b.y += b.vy;
-        // soft bounce
         if (b.x < -b.r) b.x = W + b.r;
         if (b.x > W + b.r) b.x = -b.r;
         if (b.y < -b.r) b.y = H + b.r;
         if (b.y > H + b.r) b.y = -b.r;
       });
-      requestAnimationFrame(drawBlobs);
+      animFrame = requestAnimationFrame(drawBlobs);
     }
 
-    resize();
-    initBlobs();
-    drawBlobs();
-    window.addEventListener('resize', () => { resize(); initBlobs(); }, { passive: true });
+    // Wait for full page load so fonts/images are rendered and scrollHeight is accurate
+    window.addEventListener('load', () => {
+      resize();
+      initBlobs();
+      drawBlobs();
+      // Re-check height after a short delay in case late-loading resources shift layout
+      setTimeout(() => { resize(); }, 800);
+    });
+
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(animFrame);
+      resize();
+      initBlobs();
+      drawBlobs();
+    }, { passive: true });
 
     // ── NAME CHAR REVEAL ──
     const nameEl = document.getElementById('hero-name');
